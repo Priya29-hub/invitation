@@ -25,6 +25,7 @@
   };
 
   // DOM Elements
+  const bgMusic = document.getElementById('bgMusic') || new Audio('assets/music/song-engagement.mp3');
   const envelopeScreen = document.getElementById('envelopeScreen');
   const singleCardScreen = document.getElementById('singleCardScreen');
   const waxSeal = document.getElementById('waxSeal');
@@ -109,105 +110,58 @@
   }
 
   // ==========================================================================
-  // 2. ROYAL WEDDING AUDIO ENGINE (Web Audio API Shehnai & Tanpura Drone)
-  // Zero external download lag - works instantly upon first user interaction
+  // 2. ROYAL WEDDING AUDIO ENGINE (assets/music/song-engagement.mp3)
+  // Plays automatically on open / first user interaction, with toggle controls
   // ==========================================================================
-  function initRoyalAudio() {
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      state.audioContext = new AudioCtx();
-
-      const masterGain = state.audioContext.createGain();
-      masterGain.gain.setValueAtTime(0.001, state.audioContext.currentTime);
-      masterGain.connect(state.audioContext.destination);
-
-      // Tanpura Fundamental Frequencies (Raag Yaman: Sa, Pa, Sa', Pa')
-      const droneFreqs = [146.83, 220.00, 293.66, 440.00];
-      droneFreqs.forEach((freq, idx) => {
-        const osc = state.audioContext.createOscillator();
-        const gain = state.audioContext.createGain();
-        osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
-        osc.frequency.setValueAtTime(freq, state.audioContext.currentTime);
-        gain.gain.setValueAtTime(0.025 / (idx + 1), state.audioContext.currentTime);
-        osc.connect(gain);
-        gain.connect(masterGain);
-        osc.start();
-      });
-
-      // Melodic Shehnai Notes (Auspicious Indian Wedding Raga)
-      const melodicNotes = [293.66, 329.63, 369.99, 415.30, 440.00, 493.88, 554.37, 587.33];
-      let noteIndex = 0;
-
-      function playShehnaiNote() {
-        if (!state.isMusicPlaying || !state.audioContext) return;
-        try {
-          const now = state.audioContext.currentTime;
-          const osc1 = state.audioContext.createOscillator();
-          const osc2 = state.audioContext.createOscillator();
-          const noteGain = state.audioContext.createGain();
-
-          osc1.type = 'sawtooth';
-          osc2.type = 'triangle';
-
-          const baseFreq = melodicNotes[noteIndex % melodicNotes.length];
-          noteIndex = (noteIndex + Math.floor(Math.random() * 3) + 1) % melodicNotes.length;
-
-          osc1.frequency.setValueAtTime(baseFreq, now);
-          osc2.frequency.setValueAtTime(baseFreq * 2, now);
-
-          noteGain.gain.setValueAtTime(0.001, now);
-          noteGain.gain.exponentialRampToValueAtTime(0.038, now + 0.35);
-          noteGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.9);
-
-          osc1.connect(noteGain);
-          osc2.connect(noteGain);
-          noteGain.connect(masterGain);
-
-          osc1.start(now);
-          osc2.start(now);
-          osc1.stop(now + 2.0);
-          osc2.stop(now + 2.0);
-        } catch (e) {
-          console.warn('Audio note error:', e);
-        }
-
-        const nextDelay = Math.random() * 850 + 1150;
-        setTimeout(playShehnaiNote, nextDelay);
-      }
-
-      state.audioNodes = { masterGain, playShehnaiNote };
-    } catch (err) {
-      console.warn('Web Audio error:', err);
-    }
+  if (bgMusic) {
+    bgMusic.loop = true;
   }
 
   function startRoyalMusic() {
-    if (!state.audioContext) initRoyalAudio();
-    if (state.audioContext && state.audioContext.state === 'suspended') {
-      state.audioContext.resume();
-    }
-    if (state.audioNodes && state.audioNodes.masterGain) {
-      state.audioNodes.masterGain.gain.linearRampToValueAtTime(0.38, state.audioContext.currentTime + 1.2);
+    if (!bgMusic) return;
+    bgMusic.play().then(() => {
       state.isMusicPlaying = true;
       audioControl.classList.remove('muted');
       if (musicLabel) musicLabel.textContent = 'संगीत चालू';
-      state.audioNodes.playShehnaiNote();
-    }
-  }
-
-  function toggleRoyalMusic() {
-    if (!state.audioContext) initRoyalAudio();
-    if (!state.isMusicPlaying) {
-      startRoyalMusic();
-    } else {
-      if (state.audioNodes && state.audioNodes.masterGain) {
-        state.audioNodes.masterGain.gain.linearRampToValueAtTime(0.001, state.audioContext.currentTime + 0.5);
-      }
+    }).catch((err) => {
+      // If browser policy blocks autoplay with sound, wait for first user touch
+      console.log('Autoplay deferred until user interaction:', err);
       state.isMusicPlaying = false;
       audioControl.classList.add('muted');
       if (musicLabel) musicLabel.textContent = 'संगीत बंद';
+    });
+  }
+
+  function toggleRoyalMusic() {
+    if (!bgMusic) return;
+    if (state.isMusicPlaying) {
+      bgMusic.pause();
+      state.isMusicPlaying = false;
+      audioControl.classList.add('muted');
+      if (musicLabel) musicLabel.textContent = 'संगीत बंद';
+    } else {
+      startRoyalMusic();
     }
+  }
+
+  // Try autoplaying immediately when the file is opened
+  function attemptAutoplay() {
+    startRoyalMusic();
+
+    // Also add one-time interaction listeners so if browser blocks unprompted autoplay,
+    // it starts immediately on the very first touch, click, scroll or keypress!
+    const unlockAudio = () => {
+      if (!state.isMusicPlaying) {
+        startRoyalMusic();
+      }
+      ['click', 'touchstart', 'pointerdown', 'keydown', 'scroll'].forEach(evt => {
+        window.removeEventListener(evt, unlockAudio);
+      });
+    };
+
+    ['click', 'touchstart', 'pointerdown', 'keydown', 'scroll'].forEach(evt => {
+      window.addEventListener(evt, unlockAudio, { once: true, passive: true });
+    });
   }
 
   // ==========================================================================
@@ -497,6 +451,10 @@
   document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     setupEventListeners();
+    attemptAutoplay();
   });
+
+  // Also attempt autoplay immediately as soon as the script loads
+  attemptAutoplay();
 
 })();
