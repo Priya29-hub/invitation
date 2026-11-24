@@ -380,6 +380,17 @@
   function replayEnvelope() {
     state.isEnvelopeOpened = false;
 
+    // Reset map container if open
+    const mapContainer = document.getElementById('mapIframeContainer');
+    const toggleMapBtn = document.getElementById('toggleMapBtn');
+    if (mapContainer) mapContainer.style.display = 'none';
+    if (toggleMapBtn) {
+      toggleMapBtn.classList.remove('active');
+      const btnSpan = toggleMapBtn.querySelector('.btn-text') || toggleMapBtn.querySelector('span');
+      if (btnSpan) btnSpan.textContent = '📍 गुगल मॅपवर दिशा पहा (View on Map)';
+      toggleMapBtn.setAttribute('aria-expanded', 'false');
+    }
+
     const replayTl = gsap.timeline();
 
     // Fade out card
@@ -445,14 +456,92 @@
     if (replayEnvelopeBtn) {
       replayEnvelopeBtn.addEventListener('click', replayEnvelope);
     }
+
+    // Google Map Link & Toggle
+    const googleMapBtn = document.getElementById('googleMapBtn');
+    if (googleMapBtn) {
+      googleMapBtn.addEventListener('click', (e) => {
+        if (window.handleMapClick) {
+          window.handleMapClick(e);
+        }
+      });
+    }
+
+    const toggleMapBtn = document.getElementById('toggleMapBtn');
+    if (toggleMapBtn) {
+      toggleMapBtn.addEventListener('click', (e) => {
+        if (window.toggleGoogleMap) {
+          window.toggleGoogleMap(e);
+        }
+      });
+    }
   }
 
-  // Initialize on DOM Ready
-  document.addEventListener('DOMContentLoaded', () => {
+  // Primary Map Click: opens Google Maps directions and previews map on card
+  window.handleMapClick = function (e) {
+    const mapUrl = "https://www.google.com/maps/search/?api=1&query=Jalaram+Banquet+Hall,+PP+Marg,+near+Bus+Depot,+Gaothan,+Virar+West,+Vasai-Virar,+Maharashtra+401303";
+    const mapContainer = document.getElementById('mapIframeContainer');
+    const toggleBtn = document.getElementById('toggleMapBtn');
+    if (mapContainer) {
+      mapContainer.style.setProperty('display', 'block', 'important');
+    }
+    if (toggleBtn) {
+      const toggleText = toggleBtn.querySelector('.toggle-text') || toggleBtn;
+      toggleText.textContent = '🗺️ पत्रिकेतील नकाशा बंद करा (Close Preview) ▲';
+      toggleBtn.setAttribute('aria-expanded', 'true');
+    }
+    try {
+      window.open(mapUrl, '_blank', 'noopener,noreferrer');
+    } catch (err) {
+      window.location.href = mapUrl;
+    }
+  };
+
+  // Inline Toggle Map Preview
+  window.toggleGoogleMap = function (e) {
+    if (e) {
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+    }
+    const mapContainer = document.getElementById('mapIframeContainer');
+    const toggleBtn = document.getElementById('toggleMapBtn');
+    if (!mapContainer) return;
+
+    const currentDisplay = window.getComputedStyle(mapContainer).display;
+    const isHidden = mapContainer.style.display === 'none' || currentDisplay === 'none' || mapContainer.style.display === '';
+
+    if (isHidden) {
+      mapContainer.style.setProperty('display', 'block', 'important');
+      if (toggleBtn) {
+        const toggleText = toggleBtn.querySelector('.toggle-text') || toggleBtn;
+        toggleText.textContent = '🗺️ पत्रिकेतील नकाशा बंद करा (Close Preview) ▲';
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+      setTimeout(() => {
+        mapContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 60);
+    } else {
+      mapContainer.style.setProperty('display', 'none', 'important');
+      if (toggleBtn) {
+        const toggleText = toggleBtn.querySelector('.toggle-text') || toggleBtn;
+        toggleText.textContent = '🗺️ पत्रिकेत नकाशा दाखवा (Preview Map Here) ▼';
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+  };
+
+  // Initialize properly even if DOMContentLoaded already fired
+  function initializeInvitation() {
     initParticles();
     setupEventListeners();
     attemptAutoplay();
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeInvitation);
+  } else {
+    initializeInvitation();
+  }
 
   // Also attempt autoplay immediately as soon as the script loads
   attemptAutoplay();
