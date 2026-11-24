@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>शुभ साखरपुडा निमंत्रण | चि. प्रियांका कदम आणि चि. निलेश मोरे</title>
+  <meta name="description" content="श्री गणेशाय नमः | चि. प्रियांका कदम आणि चि. निलेश मोरे यांचा शुभ साखरपुडा समारंभ सस्नेह निमंत्रण पत्रिका">
+  
+  <!-- Google Fonts: Traditional Royal Marathi & Classical Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Rozha+One&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body class="royal-theme">
+
+  <!-- Background Ambient Glow & Floating Gold Particles Canvas -->
+  <canvas id="particles-canvas" class="particles-canvas"></canvas>
+  <div class="vintage-overlay"></div>
+  <div class="royal-vignette"></div>
+
+  <!-- Audio Player Controller -->
+  <div class="audio-control" id="audioControl" title="संगीत चालू / बंद करा">
+    <button class="music-btn" id="musicBtn" aria-label="Toggle Music">
+      <div class="music-icon-wrap">
+        <svg class="music-note-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+        <span class="music-wave wave-1"></span>
+        <span class="music-wave wave-2"></span>
+        <span class="music-wave wave-3"></span>
+      </div>
+      <span class="music-label" id="musicLabel">मंगल संगीत</span>
+    </button>
+  </div>
+
+  <!-- Main Viewport Container -->
+  <main class="invitation-app-shell" id="appShell">
+
+    <!-- STAGE 1: LANDING SCREEN - 3D ROYAL INVITATION ENVELOPE -->
+    <div class="envelope-screen" id="envelopeScreen">
+      
+      <div class="decor-corner decor-top-left" aria-hidden="true">
+        <svg viewBox="0 0 160 160" class="corner-svg">
+          <path class="gold-curl" d="M10,10 Q50,15 70,40 Q90,65 110,60 Q130,55 150,80 Q90,90 60,60 Q30,30 10,10 Z" fill="url(#goldGrad)"/>
+          <circle cx="35" cy="35" r="5" fill="#e8c374"/>
+          <circle cx="55" cy="25" r="3" fill="#fdf0cd"/>
+          <circle cx="75" cy="50" r="4" fill="#e8c374"/>
+          <path d="M40,40 C30,20 60,10 70,30 C80,10 110,20 100,40 C110,60 80,70 70,50 C60,70 30,60 40,40 Z" fill="#fff9ee" stroke="#e0c078" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="decor-corner decor-top-right" aria-hidden="true">
+        <svg viewBox="0 0 160 160" class="corner-svg flip-x">
+          <path class="gold-curl" d="M10,10 Q50,15 70,40 Q90,65 110,60 Q130,55 150,80 Q90,90 60,60 Q30,30 10,10 Z" fill="url(#goldGrad)"/>
+          <circle cx="35" cy="35" r="5" fill="#e8c374"/>
+          <path d="M40,40 C30,20 60,10 70,30 C80,10 110,20 100,40 C110,60 80,70 70,50 C60,70 30,60 40,40 Z" fill="#fff9ee" stroke="#e0c078" stroke-width="1.2"/>
+        </svg>
+      </div>
+
+      <div class="envelope-hero-box">
+        
+        <div class="envelope-top-text" id="envelopeTopText">
+          <div class="ganesha-shlok-img-wrap">
+            <img src="assets/images/ganesha.png" alt="श्री गणेश" class="ganesha-shlok-img">
+          </div>
+          <p class="envelope-subtext">आपणास सस्नेह निमंत्रण</p>
+          <div class="ornamental-motif">
+            <span class="motif-line"></span>
+            <span class="motif-symbol">❖ ॐ ❖</span>
+            <span class="motif-line"></span>
+          </div>
+        </div>
+
+        <div class="royal-envelope-wrapper" id="envelopeWrapper">
+          <div class="envelope-perspective-box" id="envelopeBox">
+            
+            <div class="envelope-back">
+              <div class="envelope-lining-pattern"></div>
+            </div>
+
+            <div class="peek-card" id="peekCard">
+              <div class="peek-card-inner">
+                <div class="peek-card-border"></div>
+                <div class="peek-ganesha">
+                  <svg viewBox="0 0 50 50" width="38" height="38">
+                    <circle cx="25" cy="25" r="23" fill="#881337" stroke="#e6ca65" stroke-width="1.5"/>
+                    <path d="M25 8 C23 12 20 16 17 22 C15 26 16 30 18 33 C20 36 24 38 27 38 C31 38 34 35 34 31 C34 27 31 24 28 22 C26 20 25 15 25 8 Z" fill="#e6ca65"/>
+                    <circle cx="25" cy="18" r="2.5" fill="#fff"/>
+                  </svg>
+                </div>
+                <span class="peek-text">साखरपुडा पत्रिका</span>
+              </div>
+            </div>
+
+            <div class="envelope-flap" id="envelopeFlap">
+              <div class="flap-front">
+                <svg viewBox="0 0 500 240" class="flap-svg" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="flapGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#dfbc6d"/>
+                      <stop offset="30%" stop-color="#fdf3d0"/>
+                      <stop offset="60%" stop-color="#c59b27"/>
+                      <stop offset="100%" stop-color="#a67c1e"/>
+                    </linearGradient>
+                    <linearGradient id="paperGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#faf5e9"/>
+                      <stop offset="100%" stop-color="#f3ead4"/>
+                    </linearGradient>
+                    <filter id="flapEmboss" x="-10%" y="-10%" width="120%" height="120%">
+                      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#805b10" flood-opacity="0.3"/>
+                    </feDropShadow>
+                  </defs>
+                  
+                  <path d="M 0,0 
+                           L 500,0 
+                           L 500,20 
+                           C 450,40 430,70 380,85 
+                           C 330,100 310,135 270,175 
+                           C 258,187 242,187 230,175 
+                           C 190,135 170,100 120,85 
+                           C 70,70 50,40 0,20 
+                           Z" 
+                        fill="url(#paperGrad)" stroke="url(#flapGold)" stroke-width="2.5" filter="url(#flapEmboss)"/>
+                  
+                  <g class="flap-filigree" stroke="url(#flapGold)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M250,55 C240,75 230,100 250,140 C270,100 260,75 250,55 Z"/>
+                    <path d="M250,75 C235,90 235,110 250,130 C265,110 265,90 250,75 Z"/>
+                    <path d="M250,95 L250,135"/>
+                    <path d="M230,115 C205,100 185,110 170,95 C155,80 170,60 190,70 C210,80 215,105 230,115 Z"/>
+                    <path d="M170,95 C145,85 130,95 110,80 C90,65 105,45 125,55 C145,65 150,85 170,95 Z"/>
+                    <path d="M110,80 C90,75 80,60 60,50 C40,40 45,25 65,30 C85,35 95,55 110,80 Z"/>
+                    <path d="M270,115 C295,100 315,110 330,95 C345,80 330,60 310,70 C290,80 285,105 270,115 Z"/>
+                    <path d="M330,95 C355,85 370,95 390,80 C410,65 395,45 375,55 C355,65 350,85 330,95 Z"/>
+                    <path d="M390,80 C410,75 420,60 440,50 C460,40 455,25 435,30 C415,35 405,55 390,80 Z"/>
+                    <circle cx="250" cy="165" r="3" fill="url(#flapGold)"/>
+                    <circle cx="215" cy="145" r="2.5" fill="url(#flapGold)"/>
+                    <circle cx="285" cy="145" r="2.5" fill="url(#flapGold)"/>
+                    <circle cx="180" cy="118" r="2" fill="url(#flapGold)"/>
+                    <circle cx="320" cy="118" r="2" fill="url(#flapGold)"/>
+                  </g>
+                </svg>
+
+                <div class="wax-seal" id="waxSeal" role="button" tabindex="0" aria-label="Open Wax Seal">
+                  <div class="wax-seal-rim"></div>
+                  <div class="wax-seal-body">
+                    <svg viewBox="0 0 80 80" class="wax-seal-svg">
+                      <defs>
+                        <radialGradient id="waxGrad" cx="40%" cy="35%" r="65%">
+                          <stop offset="0%" stop-color="#fae7a5"/>
+                          <stop offset="35%" stop-color="#d4af37"/>
+                          <stop offset="70%" stop-color="#996515"/>
+                          <stop offset="100%" stop-color="#5a3805"/>
+                        </radialGradient>
+                      </defs>
+                      <circle cx="40" cy="40" r="38" fill="url(#waxGrad)" stroke="#5c3808" stroke-width="1.5"/>
+                      <circle cx="40" cy="40" r="32" fill="none" stroke="#fce6a2" stroke-width="1.5" stroke-dasharray="3,2"/>
+                      <circle cx="40" cy="40" r="28" fill="url(#waxGrad)"/>
+                      <g class="stamp-emblem" fill="#4d2f02" stroke="#fdebb3" stroke-width="0.8">
+                        <path d="M40 20 C36 24 33 28 32 32 C31 36 34 40 37 42 C40 44 42 46 42 49 C42 53 38 56 34 54 C33 53 32 50 33 48 M40 22 C43 25 46 29 46 34 C46 39 42 43 40 45" fill="none" stroke="#fdebb3" stroke-width="2.2" stroke-linecap="round"/>
+                        <circle cx="40" cy="22" r="2.5" fill="#fdebb3"/>
+                        <circle cx="35" cy="27" r="1.5" fill="#fdebb3"/>
+                        <path d="M37 32 H43" stroke="#fdebb3" stroke-width="2"/>
+                      </g>
+                    </svg>
+                    <div class="wax-shine"></div>
+                  </div>
+                  <div class="wax-seal-pulse"></div>
+                </div>
+
+              </div>
+              <div class="flap-back"></div>
+            </div>
+
+            <div class="envelope-front">
+              <svg viewBox="0 0 500 320" class="envelope-front-svg" preserveAspectRatio="none">
+                <defs>
+                  <filter id="pocketShadow" x="-10%" y="-10%" width="120%" height="120%">
+                    <feDropShadow dx="0" dy="-4" stdDeviation="5" flood-color="#553d10" flood-opacity="0.25"/>
+                  </filter>
+                </defs>
+                <path d="M 0,0 L 250,175 L 0,320 Z" fill="#f6eedc" stroke="#dfbc6d" stroke-width="1"/>
+                <path d="M 500,0 L 250,175 L 500,320 Z" fill="#f3ead4" stroke="#dfbc6d" stroke-width="1"/>
+                <path d="M 0,320 L 250,150 L 500,320 Z" fill="#fff9ee" stroke="#d5b058" stroke-width="1.8" filter="url(#pocketShadow)"/>
+                <path d="M 30,310 L 250,165 L 470,310" fill="none" stroke="#cfa84a" stroke-width="1.2" stroke-dasharray="4,4"/>
+              </svg>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="envelope-action" id="envelopeAction">
+          <button class="open-invitation-btn" id="openInviteBtn">
+            <span class="btn-shimmer"></span>
+            <span class="btn-icon-left">⚜</span>
+            <span class="btn-text">निमंत्रण उघडा • Open Invitation</span>
+            <span class="btn-icon-right">⚜</span>
+          </button>
+          <p class="click-hint">पाकिटावर किंवा बटनावर स्पर्श करा</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- STAGE 2: THE GRAND SINGLE-PAGE ROYAL ENGAGEMENT INVITATION CARD -->
+    <div class="single-card-screen" id="singleCardScreen">
+      
+      <div class="falling-petals-overlay" id="petalsOverlay"></div>
+
+      <div class="card-butterflies" aria-hidden="true">
+        <div class="butterfly bf-1">
+          <div class="bf-wing bf-left"></div>
+          <div class="bf-body"></div>
+          <div class="bf-wing bf-right"></div>
+        </div>
+        <div class="butterfly bf-2">
+          <div class="bf-wing bf-left"></div>
+          <div class="bf-body"></div>
+          <div class="bf-wing bf-right"></div>
+        </div>
+        <div class="butterfly bf-3">
+          <div class="bf-wing bf-left"></div>
+          <div class="bf-body"></div>
+          <div class="bf-wing bf-right"></div>
+        </div>
+      </div>
+
+      <article class="single-royal-card" id="masterRoyalCard">
+        
+        <div class="card-paper-texture"></div>
+
+        <div class="antique-gold-frame-svg">
+          <svg viewBox="0 0 620 980" class="frame-svg" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="goldBaroque" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff8db"/>
+                <stop offset="25%" stop-color="#e3be64"/>
+                <stop offset="50%" stop-color="#b6831d"/>
+                <stop offset="75%" stop-color="#f2d787"/>
+                <stop offset="100%" stop-color="#885b09"/>
+              </linearGradient>
+              <filter id="goldShine" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#5a410b" flood-opacity="0.45"/>
+              </filter>
+            </defs>
+            
+            <rect x="20" y="20" width="580" height="940" rx="22" fill="none" stroke="url(#goldBaroque)" stroke-width="4.5" filter="url(#goldShine)"/>
+            <rect x="32" y="32" width="556" height="916" rx="16" fill="none" stroke="url(#goldBaroque)" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+            <path d="M190,21 C230,8 280,6 310,6 C340,6 390,8 430,21 C390,38 340,42 310,42 C280,42 230,38 190,21 Z" fill="url(#goldBaroque)"/>
+            <circle cx="310" cy="14" r="6" fill="#fff9df"/>
+
+            <path d="M190,959 C230,972 280,974 310,974 C340,974 390,972 430,959 C390,942 340,938 310,938 C280,938 230,942 190,959 Z" fill="url(#goldBaroque)"/>
+            <circle cx="310" cy="966" r="6" fill="#fff9df"/>
+            
+            <g fill="none" stroke="url(#goldBaroque)" stroke-width="3">
+              <path d="M20,95 C32,55 52,35 95,20 C78,42 78,75 20,95 Z" fill="url(#goldBaroque)"/>
+              <path d="M600,95 C588,55 568,35 525,20 C542,42 542,75 600,95 Z" fill="url(#goldBaroque)"/>
+              <path d="M20,885 C32,925 52,945 95,960 C78,938 78,905 20,885 Z" fill="url(#goldBaroque)"/>
+              <path d="M600,885 C588,925 568,945 525,960 C542,938 542,905 600,885 Z" fill="url(#goldBaroque)"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="floral-cluster floral-top-left">
+          <div class="rose-bloom rose-large"></div>
+          <div class="rose-bloom rose-medium"></div>
+          <div class="baby-breath-sprig"></div>
+          <div class="golden-leaf leaf-1"></div>
+          <div class="golden-leaf leaf-2"></div>
+        </div>
+        <div class="floral-cluster floral-top-right">
+          <div class="rose-bloom rose-large"></div>
+          <div class="rose-bloom rose-medium"></div>
+          <div class="baby-breath-sprig"></div>
+          <div class="golden-leaf leaf-1"></div>
+        </div>
+        <div class="floral-cluster floral-bottom-left">
+          <div class="rose-bloom rose-large"></div>
+          <div class="rose-bloom rose-medium"></div>
+          <div class="baby-breath-sprig"></div>
+          <div class="golden-leaf leaf-1"></div>
+        </div>
+        <div class="floral-cluster floral-bottom-right">
+          <div class="rose-bloom rose-large"></div>
+          <div class="rose-bloom rose-medium"></div>
+          <div class="baby-breath-sprig"></div>
+          <div class="golden-leaf leaf-1"></div>
+          <div class="golden-leaf leaf-2"></div>
+        </div>
+
+        <div class="single-card-body">
+
+          <div class="card-header-ganesh" id="cardGanesh">
+            <div class="divine-sunburst-halo"></div>
+            <div class="ganesh-icon-wrap">
+              <img src="assets/images/ganesha.png" alt="श्री गणेश" class="card-ganesha-img">
+            </div>
+            <h2 class="card-ganesh-title">॥ श्री गणेशाय नमः ॥</h2>
+            <div class="card-sasneha-tag">
+              <span class="marathi-calligraphy">सस्नेह निमंत्रण</span>
+            </div>
+          </div>
+
+          <div class="card-signature-illustration" id="cardSignatureIllu">
+            <div class="temple-bells-row" aria-hidden="true">
+              <div class="bell-item bell-1">
+                <span class="bell-chain"></span>
+                <svg viewBox="0 0 40 50" class="bell-svg">
+                  <path d="M20,5 Q10,15 10,35 L30,35 Q30,15 20,5 Z" fill="#d4af37" stroke="#8a6914" stroke-width="1.5"/>
+                  <circle cx="20" cy="40" r="4" fill="#8a6914"/>
+                </svg>
+              </div>
+              <div class="bell-item bell-2">
+                <span class="bell-chain long"></span>
+                <svg viewBox="0 0 40 50" class="bell-svg">
+                  <path d="M20,5 Q10,15 10,35 L30,35 Q30,15 20,5 Z" fill="#d4af37" stroke="#8a6914" stroke-width="1.5"/>
+                  <circle cx="20" cy="40" r="4" fill="#8a6914"/>
+                </svg>
+              </div>
+              <div class="bell-item bell-3">
+                <span class="bell-chain center-chain"></span>
+                <svg viewBox="0 0 50 60" class="bell-svg large-bell">
+                  <path d="M25,5 Q12,18 12,42 L38,42 Q38,18 25,5 Z" fill="#f59e0b" stroke="#78350f" stroke-width="1.8"/>
+                  <circle cx="25" cy="48" r="5" fill="#78350f"/>
+                </svg>
+              </div>
+              <div class="bell-item bell-4">
+                <span class="bell-chain long"></span>
+                <svg viewBox="0 0 40 50" class="bell-svg">
+                  <path d="M20,5 Q10,15 10,35 L30,35 Q30,15 20,5 Z" fill="#d4af37" stroke="#8a6914" stroke-width="1.5"/>
+                  <circle cx="20" cy="40" r="4" fill="#8a6914"/>
+                </svg>
+              </div>
+              <div class="bell-item bell-5">
+                <span class="bell-chain"></span>
+                <svg viewBox="0 0 40 50" class="bell-svg">
+                  <path d="M20,5 Q10,15 10,35 L30,35 Q30,15 20,5 Z" fill="#d4af37" stroke="#8a6914" stroke-width="1.5"/>
+                  <circle cx="20" cy="40" r="4" fill="#8a6914"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="card-arch-backdrop">
+              <svg viewBox="0 0 440 260" class="card-arch-svg" preserveAspectRatio="none">
+                <path d="M30,260 L30,110 C30,45 110,15 220,15 C330,15 410,45 410,110 L410,260 Z" 
+                      fill="#f7f2e4" stroke="#cbb274" stroke-width="2" stroke-dasharray="6,4" opacity="0.85"/>
+              </svg>
+            </div>
+
+            <div class="banana-leaves-stage" id="bananaLeavesStage">
+              <div class="banana-leaf-group leaf-group-left" id="leafGroupLeft">
+                <div class="banana-leaf back-leaf">
+                  <svg viewBox="0 0 240 380" class="leaf-svg">
+                    <defs>
+                      <linearGradient id="bLeafGL" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#16431f"/>
+                        <stop offset="50%" stop-color="#2a6634"/>
+                        <stop offset="100%" stop-color="#123819"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M210,370 C170,270 110,180 35,70 C75,25 130,18 190,70 C230,110 245,220 210,370 Z" fill="url(#bLeafGL)" opacity="0.85"/>
+                    <path d="M210,370 C150,230 100,140 35,70" stroke="#7ab86c" stroke-width="3" fill="none"/>
+                  </svg>
+                </div>
+                <div class="banana-leaf main-leaf">
+                  <svg viewBox="0 0 260 410" class="leaf-svg">
+                    <defs>
+                      <linearGradient id="fLeafGL" x1="20%" y1="0%" x2="80%" y2="100%">
+                        <stop offset="0%" stop-color="#3c8a43"/>
+                        <stop offset="35%" stop-color="#55a850"/>
+                        <stop offset="70%" stop-color="#2c6932"/>
+                        <stop offset="100%" stop-color="#1a471f"/>
+                      </linearGradient>
+                      <filter id="fShadowL">
+                        <feDropShadow dx="-3" dy="6" stdDeviation="5" flood-color="#0e2410" flood-opacity="0.35"/>
+                      </filter>
+                    </defs>
+                    <path d="M220,400 C200,340 165,280 125,200 C90,130 60,70 25,18 C70,10 125,22 170,68 C210,110 235,180 245,270 C250,330 235,370 220,400 Z" 
+                          fill="url(#fLeafGL)" filter="url(#fShadowL)"/>
+                    <path d="M220,400 C160,260 110,160 25,18" stroke="#a3e635" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <g stroke="#86efac" stroke-width="1.6" opacity="0.65" stroke-linecap="round">
+                      <path d="M185,340 Q145,330 125,320 M200,345 Q230,330 240,320"/>
+                      <path d="M150,270 Q115,260 90,250 M170,275 Q205,255 225,245"/>
+                      <path d="M115,205 Q80,195 55,190 M135,210 Q175,190 200,175"/>
+                      <path d="M85,145 Q50,135 35,128 M105,150 Q145,130 165,115"/>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="banana-leaf-group leaf-group-right" id="leafGroupRight">
+                <div class="banana-leaf back-leaf">
+                  <svg viewBox="0 0 240 380" class="leaf-svg flip-x">
+                    <path d="M210,370 C170,270 110,180 35,70 C75,25 130,18 190,70 C230,110 245,220 210,370 Z" fill="url(#bLeafGL)" opacity="0.85"/>
+                    <path d="M210,370 C150,230 100,140 35,70" stroke="#7ab86c" stroke-width="3" fill="none"/>
+                  </svg>
+                </div>
+                <div class="banana-leaf main-leaf">
+                  <svg viewBox="0 0 260 410" class="leaf-svg flip-x">
+                    <path d="M220,400 C200,340 165,280 125,200 C90,130 60,70 25,18 C70,10 125,22 170,68 C210,110 235,180 245,270 C250,330 235,370 220,400 Z" 
+                          fill="url(#fLeafGL)" filter="url(#fShadowL)"/>
+                    <path d="M220,400 C160,260 110,160 25,18" stroke="#a3e635" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <g stroke="#86efac" stroke-width="1.6" opacity="0.65" stroke-linecap="round">
+                      <path d="M185,340 Q145,330 125,320 M200,345 Q230,330 240,320"/>
+                      <path d="M150,270 Q115,260 90,250 M170,275 Q205,255 225,245"/>
+                      <path d="M115,205 Q80,195 55,190 M135,210 Q175,190 200,175"/>
+                      <path d="M85,145 Q50,135 35,128 M105,150 Q145,130 165,115"/>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-elephant-center" id="cardElephantCenter">
+              <div class="elephant-rig-box" id="elephantRigBox">
+                <div class="lotus-corner lotus-left">
+                  <svg viewBox="0 0 100 80" class="lotus-svg">
+                    <path d="M50,75 C25,60 10,35 25,18 C38,30 45,50 50,75 Z" fill="#f472b6" opacity="0.8"/>
+                    <path d="M50,75 C75,60 90,35 75,18 C62,30 55,50 50,75 Z" fill="#f472b6" opacity="0.8"/>
+                    <path d="M50,75 C35,45 30,20 50,5 C70,20 65,45 50,75 Z" fill="#fbcfe8" stroke="#db2777" stroke-width="1.2"/>
+                  </svg>
+                </div>
+                <div class="lotus-corner lotus-right">
+                  <svg viewBox="0 0 100 80" class="lotus-svg flip-x">
+                    <path d="M50,75 C25,60 10,35 25,18 C38,30 45,50 50,75 Z" fill="#f472b6" opacity="0.8"/>
+                    <path d="M50,75 C75,60 90,35 75,18 C62,30 55,50 50,75 Z" fill="#f472b6" opacity="0.8"/>
+                    <path d="M50,75 C35,45 30,20 50,5 C70,20 65,45 50,75 Z" fill="#fbcfe8" stroke="#db2777" stroke-width="1.2"/>
+                  </svg>
+                </div>
+
+                <svg viewBox="0 0 520 440" class="elephant-vector" id="elephantVector">
+                  <defs>
+                    <linearGradient id="eSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#243360"/>
+                      <stop offset="40%" stop-color="#1a2546"/>
+                      <stop offset="80%" stop-color="#121a33"/>
+                      <stop offset="100%" stop-color="#0a1024"/>
+                    </linearGradient>
+                    <linearGradient id="jGold" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#eab308"/>
+                      <stop offset="50%" stop-color="#fef08a"/>
+                      <stop offset="100%" stop-color="#ca8a04"/>
+                    </linearGradient>
+                    <linearGradient id="hGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#ffd54f"/>
+                      <stop offset="50%" stop-color="#ffb300"/>
+                      <stop offset="100%" stop-color="#ff8f00"/>
+                    </linearGradient>
+                  </defs>
+
+                  <ellipse cx="260" cy="425" rx="180" ry="16" fill="#000000" opacity="0.22" filter="blur(6px)"/>
+
+                  <path d="M430,260 C465,300 460,340 455,370 C452,385 450,395 456,400" stroke="#121a33" stroke-width="8" fill="none" stroke-linecap="round"/>
+                  <path d="M454,395 C450,405 452,418 460,422 C465,415 460,405 454,395" fill="#ca8a04"/>
+
+                  <path d="M360,260 L385,395 L345,400 L325,270 Z" fill="#151e39"/>
+                  <rect x="340" y="380" width="45" height="12" rx="4" fill="url(#jGold)" stroke="#854d0e" stroke-width="1.2"/>
+                  <circle cx="348" cy="386" r="3" fill="#ef4444"/>
+                  <circle cx="362" cy="386" r="3" fill="#10b981"/>
+                  <circle cx="376" cy="386" r="3" fill="#ef4444"/>
+
+                  <path d="M190,260 L205,400 L165,405 L150,270 Z" fill="#151e39"/>
+                  <rect x="160" y="388" width="45" height="12" rx="4" fill="url(#jGold)" stroke="#854d0e" stroke-width="1.2"/>
+                  <circle cx="168" cy="394" r="3" fill="#ef4444"/>
+                  <circle cx="182" cy="394" r="3" fill="#10b981"/>
+                  <circle cx="196" cy="394" r="3" fill="#ef4444"/>
+
+                  <path d="M170,220 C140,160 210,135 290,135 C370,135 440,180 435,260 C430,310 405,370 380,410 C350,415 320,415 315,360 C305,310 280,285 240,285 C220,330 205,375 190,415 C160,415 130,415 125,360 C120,300 135,260 170,220 Z" 
+                        fill="url(#eSkin)"/>
+
+                  <path d="M130,280 C110,320 135,390 145,415 L175,412 C165,380 145,330 160,280 Z" fill="url(#eSkin)"/>
+                  <rect x="135" y="400" width="40" height="12" rx="4" fill="url(#jGold)" stroke="#854d0e" stroke-width="1"/>
+
+                  <path d="M390,280 C410,330 405,385 400,415 L365,418 C375,380 380,330 365,280 Z" fill="url(#eSkin)"/>
+                  <rect x="365" y="402" width="40" height="12" rx="4" fill="url(#jGold)" stroke="#854d0e" stroke-width="1"/>
+
+                  <g class="saddle-jhool">
+                    <path d="M225,185 C275,180 340,180 395,190 C395,255 375,310 310,325 C250,320 220,265 225,185 Z" fill="#047857" stroke="url(#jGold)" stroke-width="3"/>
+                    <path d="M240,198 C280,195 330,195 380,202 C380,250 365,295 310,310 C260,305 238,260 240,198 Z" fill="#991b1b" stroke="#fde047" stroke-width="2"/>
+                    <circle cx="310" cy="252" r="30" fill="#d97706" stroke="#fef08a" stroke-width="2.5"/>
+                    <circle cx="310" cy="252" r="20" fill="#1e3a8a" stroke="#ffffff" stroke-width="1.5"/>
+                    <circle cx="310" cy="252" r="7" fill="#f59e0b"/>
+                    <g fill="url(#jGold)" stroke="#854d0e" stroke-width="0.8">
+                      <circle cx="235" cy="245" r="5"/><circle cx="245" cy="285" r="5"/><circle cx="270" cy="315" r="5"/>
+                      <circle cx="310" cy="330" r="6"/><circle cx="350" cy="315" r="5"/><circle cx="375" cy="285" r="5"/>
+                      <circle cx="390" cy="245" r="5"/>
+                    </g>
+                  </g>
+
+                  <path d="M125,230 C110,180 145,130 195,135 C215,138 230,160 230,190 C225,230 185,250 145,250 Z" fill="url(#eSkin)"/>
+                  <path d="M145,145 C175,142 205,150 215,175 C205,190 175,195 145,175 Z" fill="url(#jGold)" stroke="#78350f" stroke-width="1.5"/>
+                  <circle cx="178" cy="165" r="5.5" fill="#dc2626"/>
+                  <circle cx="178" cy="165" r="2.5" fill="#fef08a"/>
+
+                  <g class="elephant-ear" id="elephantEar">
+                    <path d="M195,145 C240,140 265,185 240,240 C215,280 185,250 180,210 Z" fill="#1a2546" stroke="#243360" stroke-width="2"/>
+                    <path d="M200,165 C225,160 240,195 225,230 C210,250 195,235 190,205 Z" fill="#f472b6" opacity="0.35"/>
+                    <circle cx="215" cy="265" r="5.5" fill="url(#jGold)"/>
+                  </g>
+
+                  <ellipse cx="152" cy="175" rx="5" ry="3.5" fill="#fef08a"/>
+                  <circle cx="152" cy="175" r="2.2" fill="#020617"/>
+                  <path d="M144,172 Q152,168 160,172" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+
+                  <path d="M115,245 C95,252 85,270 110,275 C125,275 132,258 128,245 Z" fill="#fffbeb" stroke="#d4af37" stroke-width="1.2"/>
+                  <rect x="120" y="244" width="10" height="7" rx="2" fill="url(#jGold)"/>
+
+                  <g class="elephant-trunk" id="elephantTrunk">
+                    <path d="M125,230 C85,235 60,265 65,310 C70,350 95,365 110,340 C118,325 110,305 92,305 C82,305 78,318 84,324 C86,326 90,326 92,322" 
+                          stroke="url(#eSkin)" stroke-width="26" fill="none" stroke-linecap="round"/>
+                    <path d="M78,270 Q95,275 105,268" stroke="url(#jGold)" stroke-width="5" fill="none"/>
+                    <path d="M68,305 Q85,310 95,302" stroke="url(#jGold)" stroke-width="4.5" fill="none"/>
+
+                    <g class="trunk-lotus" transform="translate(85, 275) rotate(-20) scale(0.65)">
+                      <path d="M20,60 C0,45 -10,25 5,10 C15,20 20,40 20,60 Z" fill="#ec4899"/>
+                      <path d="M20,60 C40,45 50,25 35,10 C25,20 20,40 20,60 Z" fill="#ec4899"/>
+                      <path d="M20,60 C10,35 5,15 20,0 C35,15 30,35 20,60 Z" fill="#fbcfe8" stroke="#be185d" stroke-width="1.5"/>
+                    </g>
+                  </g>
+
+                  <g class="royal-howdah-group" id="royalHowdah">
+                    <rect x="250" y="90" width="115" height="48" rx="6" fill="url(#hGold)" stroke="#b45309" stroke-width="2.5"/>
+                    <rect x="258" y="98" width="99" height="32" rx="4" fill="#78350f" stroke="#fef08a" stroke-width="1.2"/>
+                    <text x="307" y="120" font-family="'Rozha One', serif" font-size="14" fill="#fef08a" text-anchor="middle">शुभमंगल</text>
+                    <circle cx="254" cy="88" r="4.5" fill="url(#hGold)"/>
+                    <circle cx="361" cy="88" r="4.5" fill="url(#hGold)"/>
+                    
+                    <g class="royal-riders">
+                      <path d="M225,120 L238,70 L258,72 L268,120 Z" fill="#ec4899" stroke="#9d174d" stroke-width="1.2"/>
+                      <path d="M235,80 Q250,95 260,82" stroke="url(#jGold)" stroke-width="4" fill="none"/>
+                      <path d="M226,90 L212,65 L218,60 L232,82" fill="#fbcfe8" stroke="#ca8a04" stroke-width="1.2"/>
+                      <circle cx="214" cy="58" r="4" fill="#fbcfe8"/>
+                      <circle cx="248" cy="55" r="9" fill="#fce7f3"/>
+                      <path d="M238,52 C238,40 258,40 258,52 C265,48 262,36 248,34 C234,36 232,48 238,52 Z" fill="#db2777" stroke="#831843" stroke-width="1"/>
+                      <path d="M248,34 L252,22 L246,24 Z" fill="url(#jGold)"/>
+                      <circle cx="250" cy="34" r="2.5" fill="#fef08a"/>
+                    </g>
+                  </g>
+                </svg>
+
+              </div>
+            </div>
+
+            <p class="signature-shloka-quote">
+              "हळदीकरून साखर वाटण्याचा थाट, मंगल क्षणांवर लाभली गोड साथ."
+            </p>
+
+          </div>
+
+          <div class="card-couple-section" id="cardCouple">
+            <div class="couple-grid-layout">
+              <div class="couple-box groom-box">
+                <span class="prefix-tag">चि.</span>
+                <h3 class="person-name">निलेश मोरे</h3>
+                <div class="parental-line">
+                  <strong>वडील:</strong> श्री. ह. भ. प. प्रकाश गजानन मोरे<br>
+                  <strong>आई:</strong> श्रीमती शोभा प्रकाश मोरे
+                </div>
+              </div>
+
+              <div class="couple-rings-divider">
+                <div class="intertwined-rings-svg">
+                  <svg viewBox="0 0 80 50" class="rings-svg">
+                    <circle cx="32" cy="28" r="17" fill="none" stroke="#d4af37" stroke-width="3.5"/>
+                    <polygon points="32,7 36,13 32,15 28,13" fill="#67e8f9" stroke="#fff" stroke-width="1"/>
+                    <circle cx="48" cy="25" r="17" fill="none" stroke="#b8860b" stroke-width="4" stroke-dasharray="100"/>
+                  </svg>
+                </div>
+                <span class="yancha-tag">यांचा</span>
+              </div>
+
+              <div class="couple-box bride-box">
+                <span class="prefix-tag">चि.</span>
+                <h3 class="person-name">प्रियांका कदम</h3>
+                <div class="parental-line">
+                  <strong>वडील:</strong> श्री. मनोज कृष्ण कदम<br>
+                  <strong>आई:</strong> श्रीमती मेघा मनोज कदम
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-headline-banner" id="cardHeadline">
+            <span class="headline-flourish">༺</span>
+            <div class="headline-titles">
+              <h1 class="event-title-main">शुभ साखरपुडा</h1>
+              <span class="event-title-sub">समारंभ</span>
+            </div>
+            <span class="headline-flourish">༻</span>
+          </div>
+
+          <div class="card-date-badge" id="cardDateBadge">
+            <div class="muhurt-row">
+              <span class="calendar-icon">📅</span>
+              <p class="muhurt-text">
+                <strong>रविवार, दिनांक १३ डिसेंबर २०२६</strong> • सायंकाळी <strong>५:०० वाजता</strong>
+              </p>
+            </div>
+          </div>
+
+          <div class="card-venue-section" id="cardVenue">
+            <span class="section-badge">• समारंभ स्थळ •</span>
+            <p class="venue-name">
+              पी. पी. मार्ग, बस डेपो जवळ,<br>
+              गावठाण, विरार पश्चिम,<br>
+              वसई-विरार, महाराष्ट्र – ४०१३०३.
+            </p>
+            
+            <div class="map-action-wrap">
+              <a href="https://www.google.com/maps/search/?api=1&query=PP+Marg%2C+near+Bus+Depot%2C+Gaothan%2C+Virar+West%2C+Vasai-Virar%2C+Maharashtra+401303" target="_blank" rel="noopener noreferrer" class="google-map-btn">
+                <span>📍 गुगल मॅपवर दिशा पहा (View on Map)</span>
+              </a>
+            </div>
+
+            <div class="map-iframe-container" style="margin-top: 10px; border-radius: 8px; overflow: hidden; border: 1.5px solid #d5bc78; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+              <iframe src="https://maps.google.com/maps?q=PP+Marg,+near+Bus+Depot,+Gaothan,+Virar+West,+Vasai-Virar,+Maharashtra+401303&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="180" style="border:0; display: block;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          </div>
+
+          <div class="card-inviter-section" id="cardInviter">
+            <span class="section-badge">• निमंत्रक •</span>
+            <p class="inviter-family">समस्त कदम व मोरे परिवार</p>
+            
+            <div class="ornate-separator">
+              <svg viewBox="0 0 160 20" width="130" height="16">
+                <path d="M10,10 Q40,0 80,10 Q120,20 150,10" fill="none" stroke="#bf9438" stroke-width="1.5"/>
+                <circle cx="80" cy="10" r="3" fill="#bf9438"/>
+              </svg>
+            </div>
+
+            <p class="card-blessing-quote">
+              "तरी आपण सहकुटुंब सहपरिवार उपस्थित राहून वधू-वरास शुभाशीर्वाद द्यावेत, ही नम्र विनंती."
+            </p>
+          </div>
+
+          <div class="card-footer-controls">
+            <button class="replay-envelope-btn" id="replayEnvelopeBtn" title="पाकीट पुन्हा बंद करून उघडा">
+              <span class="replay-icon">↺</span>
+              <span>पाकीट पुन्हा अनुभवा (Replay Envelope)</span>
+            </button>
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </main>
+
+  <svg width="0" height="0" class="global-svg-defs">
+    <defs>
+      <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fff8db"/>
+        <stop offset="30%" stop-color="#e3be64"/>
+        <stop offset="70%" stop-color="#b6831d"/>
+        <stop offset="100%" stop-color="#885b09"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
